@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	TableName = "Contacts"
+	TableName = "Contacts_SS"
 	Region    = "us-east-1"
 )
 

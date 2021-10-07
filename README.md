@@ -14,3 +14,11 @@
 - `status`: String
 
 This table has a **simple primary key** made up of just a partition key (`id`)
+
+## AWS Resources
+
+- **DynamoDB**
+    - `Contacts_SS`
+- **Lambdas**
+    - `insert-contact-ss`
+- **API Gateway**

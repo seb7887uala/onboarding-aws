@@ -1,17 +1,24 @@
 BIN= $(CURDIR)/bin
-Q= $(if $(filter 1,$V),,@)
-M= $(shell printf "\033[34;1m▶\033[0m")
-PKGS = $(or $(PKG),$(shell GO111MODULE=on go list ./...))
+FUNCTION=insert-contact-aws-lambda
 
 .PHONY: build
-build: fmt $(BIN) ; $(info $(M) building executable...) @
-								$Q @env GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o bin/insert-contact-aws-lambda cmd/main.go
 
-lint: ; $(info $(M) running linter...) @
-								$Q @go vet ./...
+build: clean fmt
+	@echo "Building $(FUNCTION)..."
+	@env GOOS=linux go build -ldflags="-s -w" -o bin/$(FUNCTION) cmd/main.go
 
-fmt: ; $(info $(M) running gofmt...) @
-								$Q @go fmt ./...
+lint:
+	@go vet ./...
+
+fmt:
+	@go fmt ./...
 
 clean:
 	@rm -rf $(BIN)
+
+zip: build
+	@zip -j $(FUNCTION).zip bin/$(FUNCTION)
+
+.PHONY: test
+test:
+	@go test -v -cover ./...

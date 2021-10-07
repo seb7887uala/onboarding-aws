@@ -1,5 +1,5 @@
 BIN= $(CURDIR)/bin
-FUNCTION=insert-contact-aws-lambda
+FUNCTION=get-contact-aws-lambda
 
 .PHONY: build
 

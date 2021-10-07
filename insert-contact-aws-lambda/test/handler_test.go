@@ -22,7 +22,11 @@ func TestInsertContact(t *testing.T) {
 		mockRepository = mocks.NewMockContactRepository(ctrl)
 		h              = handler.New(mockRepository)
 		ctx            = context.Background()
-		req            = apigw.Request{
+	)
+	defer ctrl.Finish()
+
+	var (
+		req = apigw.Request{
 			Body: `{
 				"first_name": "John",
 				"last_name": "Doe"
@@ -41,7 +45,6 @@ func TestInsertContact(t *testing.T) {
 			Status:    "CREATED",
 		}
 	)
-	defer ctrl.Finish()
 
 	t.Run("inserts a new contact", func(t *testing.T) {
 		mockRepository.EXPECT().Insert("John", "Doe").Return(res, nil)

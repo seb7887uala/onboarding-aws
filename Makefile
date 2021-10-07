@@ -2,16 +2,19 @@ BIN= $(CURDIR)/bin
 Q= $(if $(filter 1,$V),,@)
 M= $(shell printf "\033[34;1m▶\033[0m")
 
-.PHONY: clean lint fmt
+.PHONY: build
+build: ; $(info $(M) building executables...) @
+		$Q $(MAKE) -C insert-contact-aws-lambda build
+		$Q $(MAKE) -C get-contact-aws-lambda build
 
-test:
-	@go test -v cover ./...
+test: ; $(info $(M) running tests...) @
+		$Q $(MAKE) -C insert-contact-aws-lambda test
+		$Q $(MAKE) -C get-contact-aws-lambda test
 
-lint: ; $(info $(M) running linter...) @ ## Run go vet on all source files
-								$Q $(MAKE) -C insert-contact-aws-lambda
+zip: ; $(info $(M) generating zip files...) @
+		$Q $(MAKE) -C insert-contact-aws-lambda zip
+		$Q $(MAKE) -C get-contact-aws-lambda zip
 
-fmt: ; $(info $(M) running gofmt...) @ ## Run gofmt on all source files
-								$Q $(MAKE) -C insert-contact-aws-lambda
-
-clean:
-	@rm -rf $(BIN)
+clean: ; $(info $(M) cleaning...) @
+		$Q $(MAKE) -C insert-contact-aws-lambda clean
+		$Q $(MAKE) -C get-contact-aws-lambda clean

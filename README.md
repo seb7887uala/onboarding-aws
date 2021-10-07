@@ -22,4 +22,8 @@ This table has a **simple primary key** made up of just a partition key (`id`)
 - **Lambdas**
     - `insert-contact-ss`
     - `get-contact-ss`
+    - `process-contact-ss`
 - **API Gateway**
+    - `api-contacts-ss`
+- **SNS**
+    - `new-contact-ss`

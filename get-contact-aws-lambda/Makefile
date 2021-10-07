@@ -15,7 +15,6 @@ fmt:
 
 clean:
 	@rm -rf $(BIN)
-	@rm $(FUNCTION).zip
 
 zip: build
 	@zip -j $(FUNCTION).zip bin/$(FUNCTION)

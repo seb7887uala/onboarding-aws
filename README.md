@@ -20,9 +20,10 @@ This table has a **simple primary key** made up of just a partition key (`id`)
 - **DynamoDB**
     - `Contacts_SS`
 - **Lambdas**
-    - `insert-contact-ss`
-    - `get-contact-ss`
-    - `process-contact-ss`
+    - `insert-contact-ss` (Activity 1)
+    - `get-contact-ss` (Activity 2)
+    - `process-contact-ss` (Activity 3)
+    - `process-status-ss` (Activity 4)
 - **API Gateway**
     - `api-contacts-ss`
 - **SNS**

@@ -6,11 +6,13 @@ import (
 	"github.com/sebsegura/onboarding-aws/get-contact-aws-lambda/pkg/repository"
 )
 
-func main() {
-	var (
-		contactRepository = repository.New()
-		h                 = handler.New(contactRepository)
-	)
+var h handler.Handler
 
+func init() {
+	contactRepository := repository.New()
+	h = handler.New(contactRepository)
+}
+
+func main() {
 	lambda.Start(h.GetItem)
 }

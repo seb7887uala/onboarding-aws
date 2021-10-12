@@ -6,11 +6,13 @@ import (
 	"github.com/sebsegura/onboarding-aws/process-contact-aws-lambda/pkg/publisher"
 )
 
-func main() {
-	var (
-		snsPublisher = publisher.New()
-		h            = handler.New(snsPublisher)
-	)
+var h handler.Handler
 
+func init() {
+	snsPublisher := publisher.New()
+	h = handler.New(snsPublisher)
+}
+
+func main() {
 	lambda.Start(h.PublishContact)
 }

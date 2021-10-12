@@ -1,15 +1,18 @@
 package publisher
 
 import (
+	"os"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
 const (
-	Region   = "us-east-1"
-	TopicArn = ""
+	Region = "us-east-1"
 )
+
+var TopicArn string = os.Getenv("TOPIC_ARN")
 
 type SNSPublisher interface {
 	Publish(msg, id string) error

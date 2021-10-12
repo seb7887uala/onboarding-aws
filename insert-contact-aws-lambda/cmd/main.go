@@ -6,10 +6,13 @@ import (
 	"github.com/sebsegura/onboarding-aws/insert-contact-aws-lambda/pkg/repository"
 )
 
+var h handler.Handler
+
+func init() {
+	contactRepository := repository.New()
+	h = handler.New(contactRepository)
+}
+
 func main() {
-	var (
-		contactRepository = repository.New()
-		h                 = handler.New(contactRepository)
-	)
 	lambda.Start(h.Insert)
 }
